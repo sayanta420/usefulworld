@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        UsefulWorld - Useful Websites From Around The World
+    </title>
+
+    <meta
+        name="description"
+        content="UsefulWorld helps you discover useful government, education, jobs, travel, emergency and online service websites from around the world."
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <meta
+        name="author"
+        content="UsefulWorld"
+    >
+
+    <meta
+        name="theme-color"
+        content="#030712"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <header class="hero">
+
+        <nav class="nav">
+
+            <div class="logo">
+                🌍 UsefulWorld
+            </div>
+
+            <div class="nav-status">
+                ● WORLDWIDE
+            </div>
+
+        </nav>
+
+
+        <div class="hero-content">
+
+            <p class="eyebrow">
+                USEFUL DIGITAL RESOURCES
+            </p>
+
+
+            <h1>
+                Everything useful.<br>
+                <span>One world.</span>
+            </h1>
+
+
+            <p class="hero-text">
+                Discover useful websites, government services,
+                education platforms, jobs, tools and more.
+            </p>
+
+
+            <div class="search-wrap">
+
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search anything..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+
+        <section class="filter-section">
+
+            <div class="section-label">
+
+                <span>01</span>
+                COUNTRIES
+
+            </div>
+
+
+            <div
+                class="countries"
+                id="countries"
+            >
+
+                <button
+                    data-country="all"
+                    class="active"
+                >
+                    🌍 All
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="filter-section">
+
+            <div class="section-label">
+
+                <span>02</span>
+                CATEGORIES
+
+            </div>
+
+
+            <div
+                class="categories"
+                id="categories"
+            >
+
+                <button
+                    data-category="all"
+                    class="active"
+                >
+                    📚 All
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="links-section">
+
+
+            <div class="links-heading">
+
+
+                <div>
+
+                    <div class="section-label">
+
+                        <span>03</span>
+                        DISCOVER
+
+                    </div>
+
+
+                    <h2 id="links-title">
+                        Useful Links
+                    </h2>
+
+                </div>
+
+
+                <div id="link-count">
+                    0 LINKS
+                </div>
+
+
+            </div>
+
+
+            <div id="links"></div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <footer>
+
+
+        <div class="footer-logo">
+            🌍 UsefulWorld
+        </div>
+
+
+        <p>
+            Useful links from around the world.
+        </p>
+
+
+        <span>
+            © 2026 UsefulWorld
+        </span>
+
+
+    </footer>
+
+
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+    </script>
+
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
