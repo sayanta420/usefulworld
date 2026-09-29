@@ -14,14 +14,23 @@ const supabaseClient = supabase.createClient(
 // ELEMENTS
 // ===============================
 
-const loginScreen = document.getElementById("login-screen");
-const adminScreen = document.getElementById("admin-screen");
+const loginScreen =
+    document.getElementById("login-screen");
 
-const googleLogin = document.getElementById("google-login");
-const logoutButton = document.getElementById("logout");
+const adminScreen =
+    document.getElementById("admin-screen");
 
-const loginError = document.getElementById("login-error");
-const adminEmail = document.getElementById("admin-email");
+const googleLogin =
+    document.getElementById("google-login");
+
+const logoutButton =
+    document.getElementById("logout");
+
+const loginError =
+    document.getElementById("login-error");
+
+const adminEmail =
+    document.getElementById("admin-email");
 
 
 // ===============================
@@ -44,7 +53,8 @@ googleLogin.addEventListener("click", async () => {
         });
 
     if (error) {
-        loginError.textContent = error.message;
+        loginError.textContent =
+            error.message;
     }
 });
 
@@ -83,6 +93,7 @@ supabaseClient.auth.onAuthStateChange(
 function showLogin() {
 
     loginScreen.classList.remove("hidden");
+
     adminScreen.classList.add("hidden");
 
 }
@@ -91,6 +102,7 @@ function showLogin() {
 function showAdmin(session) {
 
     loginScreen.classList.add("hidden");
+
     adminScreen.classList.remove("hidden");
 
     adminEmail.textContent =
@@ -104,11 +116,23 @@ function showAdmin(session) {
 // LOGOUT
 // ===============================
 
-logoutButton.addEventListener("click", async () => {
+logoutButton.addEventListener(
+    "click",
+    async () => {
 
-    await supabaseClient.auth.signOut();
+        await supabaseClient.auth.signOut();
 
-});
+    }
+);
+
+
+// ===============================
+// GLOBAL DATA
+// ===============================
+
+let countries = [];
+let categories = [];
+let links = [];
 
 
 // ===============================
@@ -118,7 +142,9 @@ logoutButton.addEventListener("click", async () => {
 async function loadEverything() {
 
     await loadCountries();
+
     await loadCategories();
+
     await loadLinks();
 
 }
@@ -128,21 +154,25 @@ async function loadEverything() {
 // COUNTRIES
 // ===============================
 
-let countries = [];
-let categories = [];
-
-
 async function loadCountries() {
 
     const { data, error } =
         await supabaseClient
             .from("countries")
             .select("*")
-            .order("id", { ascending: true });
+            .order("id", {
+                ascending: true
+            });
+
+    console.log("COUNTRIES:", data);
+    console.log("COUNTRIES ERROR:", error);
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            "Country loading error:",
+            error
+        );
 
         return;
     }
@@ -150,6 +180,7 @@ async function loadCountries() {
     countries = data || [];
 
     renderCountries();
+
     populateCountrySelect();
 }
 
@@ -157,18 +188,31 @@ async function loadCountries() {
 function renderCountries() {
 
     const container =
-        document.getElementById("countries-list");
+        document.getElementById(
+            "countries-list"
+        );
+
+    const count =
+        document.getElementById(
+            "country-count"
+        );
+
+    count.textContent =
+        countries.length;
 
     container.innerHTML = "";
 
     countries.forEach(country => {
 
-        const div = document.createElement("div");
+        const div =
+            document.createElement("div");
 
         div.className = "item";
 
         div.innerHTML = `
-            <span>${escapeHTML(country.name)}</span>
+            <span>
+                ${escapeHTML(country.name)}
+            </span>
 
             <button
                 class="delete"
@@ -187,18 +231,27 @@ function renderCountries() {
 function populateCountrySelect() {
 
     const select =
-        document.getElementById("link-country");
+        document.getElementById(
+            "link-country"
+        );
 
     select.innerHTML =
-        `<option value="">Select country</option>`;
+        `<option value="">
+            Select country
+        </option>`;
 
     countries.forEach(country => {
 
         const option =
-            document.createElement("option");
+            document.createElement(
+                "option"
+            );
 
-        option.value = country.id;
-        option.textContent = country.name;
+        option.value =
+            country.id;
+
+        option.textContent =
+            country.name;
 
         select.appendChild(option);
 
@@ -206,46 +259,66 @@ function populateCountrySelect() {
 }
 
 
+// ===============================
 // ADD COUNTRY
+// ===============================
 
 document
     .getElementById("add-country")
-    .addEventListener("click", async () => {
+    .addEventListener(
+        "click",
+        async () => {
 
-        const input =
-            document.getElementById("country-name");
+            const input =
+                document.getElementById(
+                    "country-name"
+                );
 
-        const name =
-            input.value.trim();
+            const name =
+                input.value.trim();
 
-        if (!name) return;
+            if (!name) {
 
-        const { error } =
-            await supabaseClient
-                .from("countries")
-                .insert({
-                    name: name
-                });
+                alert(
+                    "Please enter country name."
+                );
 
-        if (error) {
+                return;
+            }
 
-            alert(error.message);
+            const { error } =
+                await supabaseClient
+                    .from("countries")
+                    .insert({
+                        name: name
+                    });
 
-            return;
+            if (error) {
+
+                alert(error.message);
+
+                return;
+            }
+
+            input.value = "";
+
+            await loadCountries();
+
         }
-
-        input.value = "";
-
-        loadCountries();
-
-    });
+    );
 
 
+// ===============================
 // DELETE COUNTRY
+// ===============================
 
 async function deleteCountry(id) {
 
-    if (!confirm("Delete this country?")) {
+    if (
+        !confirm(
+            "Delete this country?"
+        )
+    ) {
         return;
     }
 
@@ -262,7 +335,8 @@ async function deleteCountry(id) {
         return;
     }
 
-    loadCountries();
+    await loadCountries();
+
 }
 
 
@@ -276,11 +350,22 @@ async function loadCategories() {
         await supabaseClient
             .from("categories")
             .select("*")
-            .order("id", { ascending: true });
+            .order("id", {
+                ascending: true
+            });
+
+    console.log("CATEGORIES:", data);
+    console.log(
+        "CATEGORIES ERROR:",
+        error
+    );
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            "Category loading error:",
+            error
+        );
 
         return;
     }
@@ -288,6 +373,7 @@ async function loadCategories() {
     categories = data || [];
 
     renderCategories();
+
     populateCategorySelect();
 }
 
@@ -295,18 +381,31 @@ async function loadCategories() {
 function renderCategories() {
 
     const container =
-        document.getElementById("categories-list");
+        document.getElementById(
+            "categories-list"
+        );
+
+    const count =
+        document.getElementById(
+            "category-count"
+        );
+
+    count.textContent =
+        categories.length;
 
     container.innerHTML = "";
 
     categories.forEach(category => {
 
-        const div = document.createElement("div");
+        const div =
+            document.createElement("div");
 
         div.className = "item";
 
         div.innerHTML = `
-            <span>${escapeHTML(category.name)}</span>
+            <span>
+                ${escapeHTML(category.name)}
+            </span>
 
             <button
                 class="delete"
@@ -325,18 +424,27 @@ function renderCategories() {
 function populateCategorySelect() {
 
     const select =
-        document.getElementById("link-category");
+        document.getElementById(
+            "link-category"
+        );
 
     select.innerHTML =
-        `<option value="">Select category</option>`;
+        `<option value="">
+            Select category
+        </option>`;
 
     categories.forEach(category => {
 
         const option =
-            document.createElement("option");
+            document.createElement(
+                "option"
+            );
 
-        option.value = category.id;
-        option.textContent = category.name;
+        option.value =
+            category.id;
+
+        option.textContent =
+            category.name;
 
         select.appendChild(option);
 
@@ -344,46 +452,66 @@ function populateCategorySelect() {
 }
 
 
+// ===============================
 // ADD CATEGORY
+// ===============================
 
 document
     .getElementById("add-category")
-    .addEventListener("click", async () => {
+    .addEventListener(
+        "click",
+        async () => {
 
-        const input =
-            document.getElementById("category-name");
+            const input =
+                document.getElementById(
+                    "category-name"
+                );
 
-        const name =
-            input.value.trim();
+            const name =
+                input.value.trim();
 
-        if (!name) return;
+            if (!name) {
 
-        const { error } =
-            await supabaseClient
-                .from("categories")
-                .insert({
-                    name: name
-                });
+                alert(
+                    "Please enter category name."
+                );
 
-        if (error) {
+                return;
+            }
 
-            alert(error.message);
+            const { error } =
+                await supabaseClient
+                    .from("categories")
+                    .insert({
+                        name: name
+                    });
 
-            return;
+            if (error) {
+
+                alert(error.message);
+
+                return;
+            }
+
+            input.value = "";
+
+            await loadCategories();
+
         }
-
-        input.value = "";
-
-        loadCategories();
-
-    });
+    );
 
 
+// ===============================
 // DELETE CATEGORY
+// ===============================
 
 async function deleteCategory(id) {
 
-    if (!confirm("Delete this category?")) {
+    if (
+        !confirm(
+            "Delete this category?"
+        )
+    ) {
         return;
     }
 
@@ -400,7 +528,8 @@ async function deleteCategory(id) {
         return;
     }
 
-    loadCategories();
+    await loadCategories();
+
 }
 
 
@@ -414,23 +543,44 @@ async function loadLinks() {
         await supabaseClient
             .from("links")
             .select("*")
-            .order("id", { ascending: true });
+            .order("id", {
+                ascending: true
+            });
+
+    console.log("LINKS:", data);
+    console.log("LINKS ERROR:", error);
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            "Link loading error:",
+            error
+        );
 
         return;
     }
 
-    renderLinks(data || []);
+    links = data || [];
+
+    renderLinks();
+
 }
 
 
-function renderLinks(links) {
+function renderLinks() {
 
     const container =
-        document.getElementById("links-list");
+        document.getElementById(
+            "links-list"
+        );
+
+    const count =
+        document.getElementById(
+            "link-count"
+        );
+
+    count.textContent =
+        links.length;
 
     container.innerHTML = "";
 
@@ -438,18 +588,25 @@ function renderLinks(links) {
 
         const country =
             countries.find(
-                c => c.id === link.country_id
+                c =>
+                    c.id ===
+                    link.country_id
             );
 
         const category =
             categories.find(
-                c => c.id === link.category_id
+                c =>
+                    c.id ===
+                    link.category_id
             );
 
         const div =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        div.className = "link-item";
+        div.className =
+            "link-item";
 
         div.innerHTML = `
             <strong>
@@ -458,12 +615,18 @@ function renderLinks(links) {
 
             <div>
                 Country:
-                ${escapeHTML(country?.name || "Unknown")}
+                ${escapeHTML(
+                    country?.name ||
+                    "Unknown"
+                )}
             </div>
 
             <div>
                 Category:
-                ${escapeHTML(category?.name || "Unknown")}
+                ${escapeHTML(
+                    category?.name ||
+                    "Unknown"
+                )}
             </div>
 
             <a
@@ -487,90 +650,130 @@ function renderLinks(links) {
         container.appendChild(div);
 
     });
+
 }
 
 
+// ===============================
 // ADD LINK
+// ===============================
 
 document
     .getElementById("add-link")
-    .addEventListener("click", async () => {
+    .addEventListener(
+        "click",
+        async () => {
 
-        const title =
+            const title =
+                document
+                    .getElementById(
+                        "link-title"
+                    )
+                    .value
+                    .trim();
+
+            const url =
+                document
+                    .getElementById(
+                        "link-url"
+                    )
+                    .value
+                    .trim();
+
+            const countryId =
+                document
+                    .getElementById(
+                        "link-country"
+                    )
+                    .value;
+
+            const categoryId =
+                document
+                    .getElementById(
+                        "link-category"
+                    )
+                    .value;
+
+
+            if (
+                !title ||
+                !url ||
+                !countryId ||
+                !categoryId
+            ) {
+
+                alert(
+                    "Please fill everything."
+                );
+
+                return;
+            }
+
+
+            const { error } =
+                await supabaseClient
+                    .from("links")
+                    .insert({
+
+                        title: title,
+
+                        url: url,
+
+                        country_id:
+                            Number(countryId),
+
+                        category_id:
+                            Number(categoryId)
+
+                    });
+
+
+            if (error) {
+
+                alert(error.message);
+
+                return;
+            }
+
+
             document
-                .getElementById("link-title")
-                .value
-                .trim();
+                .getElementById(
+                    "link-title"
+                )
+                .value = "";
 
-        const url =
             document
-                .getElementById("link-url")
-                .value
-                .trim();
+                .getElementById(
+                    "link-url"
+                )
+                .value = "";
 
-        const countryId =
+
             document
-                .getElementById("link-country")
-                .value;
+                .getElementById(
+                    "link-message"
+                )
+                .textContent =
+                    "Website added successfully!";
 
-        const categoryId =
-            document
-                .getElementById("link-category")
-                .value;
 
-        if (
-            !title ||
-            !url ||
-            !countryId ||
-            !categoryId
-        ) {
+            await loadLinks();
 
-            alert("Please fill everything.");
-
-            return;
         }
-
-        const { error } =
-            await supabaseClient
-                .from("links")
-                .insert({
-
-                    title: title,
-
-                    url: url,
-
-                    country_id:
-                        Number(countryId),
-
-                    category_id:
-                        Number(categoryId)
-
-                });
-
-        if (error) {
-
-            alert(error.message);
-
-            return;
-        }
-
-        document.getElementById("link-title").value = "";
-        document.getElementById("link-url").value = "";
-
-        document.getElementById("link-message")
-            .textContent =
-            "Website added successfully!";
-
-        loadLinks();
-
-    });
+    );
 
 
+// ===============================
 // DELETE LINK
+// ===============================
 
 async function deleteLink(id) {
 
-    if (!confirm("Delete this website?")) {
+    if (
+        !confirm(
+            "Delete this website?"
+        )
+    ) {
         return;
     }
 
@@ -587,7 +790,8 @@ async function deleteLink(id) {
         return;
     }
 
-    loadLinks();
+    await loadLinks();
+
 }
 
 
@@ -616,6 +820,8 @@ function escapeAttribute(value) {
 }
 
 
+// ===============================
 // START
+// ===============================
 
 checkUser();
