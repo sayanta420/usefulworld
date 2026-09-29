@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UsefulWorld Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+    <div id="login-screen" class="screen">
+        <div class="login-box">
+            <div class="logo">🌍</div>
+
+            <h1>UsefulWorld</h1>
+            <p>Admin Panel</p>
+
+            <button id="google-login">
+                Continue with Google
+            </button>
+
+            <p id="login-error" class="error"></p>
+        </div>
+    </div>
+
+
+    <div id="admin-screen" class="hidden">
+
+        <header>
+            <div>
+                <h1>🌍 UsefulWorld Admin</h1>
+                <p id="admin-email"></p>
+            </div>
+
+            <button id="logout">Logout</button>
+        </header>
+
+
+        <main>
+
+            <!-- COUNTRIES -->
+            <section class="card">
+                <h2>🌍 Countries</h2>
+
+                <div class="form-row">
+                    <input
+                        type="text"
+                        id="country-name"
+                        placeholder="Country name"
+                    >
+
+                    <button id="add-country">
+                        Add Country
+                    </button>
+                </div>
+
+                <div id="countries-list"></div>
+            </section>
+
+
+            <!-- CATEGORIES -->
+            <section class="card">
+                <h2>📚 Categories</h2>
+
+                <div class="form-row">
+                    <input
+                        type="text"
+                        id="category-name"
+                        placeholder="Category name"
+                    >
+
+                    <button id="add-category">
+                        Add Category
+                    </button>
+                </div>
+
+                <div id="categories-list"></div>
+            </section>
+
+
+            <!-- LINKS -->
+            <section class="card">
+
+                <h2>🔗 Add Website</h2>
+
+                <input
+                    type="text"
+                    id="link-title"
+                    placeholder="Website title"
+                >
+
+                <input
+                    type="url"
+                    id="link-url"
+                    placeholder="https://example.com"
+                >
+
+                <select id="link-country">
+                    <option value="">Select country</option>
+                </select>
+
+                <select id="link-category">
+                    <option value="">Select category</option>
+                </select>
+
+                <button id="add-link">
+                    Add Website
+                </button>
+
+                <p id="link-message"></p>
+            </section>
+
+
+            <!-- EXISTING LINKS -->
+            <section class="card">
+
+                <h2>🔗 Existing Websites</h2>
+
+                <div id="links-list"></div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="admin.js"></script>
+
+</body>
+</html>
