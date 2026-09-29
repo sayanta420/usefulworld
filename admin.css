@@ -5,7 +5,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #030712;
+    background: #0b1220;
     color: #f8fafc;
 }
 
@@ -23,22 +23,28 @@ body {
 .login-box {
     width: min(90%, 420px);
     padding: 40px;
-    background: #111827;
-    border: 1px solid #263244;
+    background: #151f32;
+    border: 1px solid #2d3a50;
     border-radius: 20px;
     text-align: center;
 }
 
 .logo {
-    font-size: 55px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-.login-box h1 {
-    margin: 10px 0 5px;
+.logo img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
 }
 
 .login-box p {
-    color: #94a3b8;
+    color: #a8b3c5;
 }
 
 button {
@@ -64,7 +70,7 @@ button:hover {
 
 header {
     padding: 20px 5%;
-    border-bottom: 1px solid #1e293b;
+    border-bottom: 1px solid #26344a;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -76,7 +82,7 @@ header h1 {
 }
 
 header p {
-    color: #94a3b8;
+    color: #a8b3c5;
 }
 
 main {
@@ -85,8 +91,8 @@ main {
 }
 
 .card {
-    background: #111827;
-    border: 1px solid #263244;
+    background: #151f32;
+    border: 1px solid #2d3a50;
     border-radius: 18px;
     padding: 25px;
     margin-bottom: 25px;
@@ -102,8 +108,8 @@ select {
     padding: 12px;
     margin: 8px 0;
     border-radius: 9px;
-    border: 1px solid #334155;
-    background: #020617;
+    border: 1px solid #3a4961;
+    background: #080f1c;
     color: white;
 }
 
@@ -127,7 +133,7 @@ select {
     gap: 15px;
     padding: 12px;
     margin-top: 8px;
-    background: #020617;
+    background: #080f1c;
     border-radius: 10px;
 }
 
@@ -138,7 +144,7 @@ select {
 .link-item {
     padding: 15px;
     margin-top: 10px;
-    background: #020617;
+    background: #080f1c;
     border-radius: 12px;
 }
 
@@ -154,4 +160,25 @@ select {
 
 .error {
     color: #f87171 !important;
+}
+
+
+/* =========================
+   WEBSITE LOGO
+   ========================= */
+
+.logo img,
+.footer-logo img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: bold;
 }
