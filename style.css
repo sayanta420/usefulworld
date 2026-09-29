@@ -5,7 +5,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #0b1220;
+    background: #030712;
     color: #f8fafc;
 }
 
@@ -23,49 +23,23 @@ body {
 .login-box {
     width: min(90%, 420px);
     padding: 40px;
-    background: #151f32;
-    border: 1px solid #2d3a50;
+    background: #111827;
+    border: 1px solid #263244;
     border-radius: 20px;
     text-align: center;
 }
 
-
-/* =========================
-   LOGO
-   ========================= */
-
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 55px;
 }
-
-.logo img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    display: block;
-}
-
-
-/* =========================
-   LOGIN
-   ========================= */
 
 .login-box h1 {
     margin: 10px 0 5px;
 }
 
 .login-box p {
-    color: #a8b3c5;
+    color: #94a3b8;
 }
-
-
-/* =========================
-   BUTTONS
-   ========================= */
 
 button {
     border: 0;
@@ -88,14 +62,9 @@ button:hover {
     color: #111827;
 }
 
-
-/* =========================
-   HEADER
-   ========================= */
-
 header {
     padding: 20px 5%;
-    border-bottom: 1px solid #26344a;
+    border-bottom: 1px solid #1e293b;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -107,27 +76,17 @@ header h1 {
 }
 
 header p {
-    color: #a8b3c5;
+    color: #94a3b8;
 }
-
-
-/* =========================
-   MAIN
-   ========================= */
 
 main {
     width: min(1100px, 92%);
     margin: 30px auto;
 }
 
-
-/* =========================
-   CARDS
-   ========================= */
-
 .card {
-    background: #151f32;
-    border: 1px solid #2d3a50;
+    background: #111827;
+    border: 1px solid #263244;
     border-radius: 18px;
     padding: 25px;
     margin-bottom: 25px;
@@ -137,26 +96,16 @@ main {
     margin-top: 0;
 }
 
-
-/* =========================
-   INPUT & SELECT
-   ========================= */
-
 input,
 select {
     width: 100%;
     padding: 12px;
     margin: 8px 0;
     border-radius: 9px;
-    border: 1px solid #3a4961;
-    background: #080f1c;
+    border: 1px solid #334155;
+    background: #020617;
     color: white;
 }
-
-
-/* =========================
-   FORM
-   ========================= */
 
 .form-row {
     display: flex;
@@ -171,11 +120,6 @@ select {
     white-space: nowrap;
 }
 
-
-/* =========================
-   ITEMS
-   ========================= */
-
 .item {
     display: flex;
     justify-content: space-between;
@@ -183,28 +127,18 @@ select {
     gap: 15px;
     padding: 12px;
     margin-top: 8px;
-    background: #080f1c;
+    background: #020617;
     border-radius: 10px;
 }
-
-
-/* =========================
-   DELETE BUTTON
-   ========================= */
 
 .delete {
     background: #dc2626;
 }
 
-
-/* =========================
-   LINK ITEMS
-   ========================= */
-
 .link-item {
     padding: 15px;
     margin-top: 10px;
-    background: #080f1c;
+    background: #020617;
     border-radius: 12px;
 }
 
@@ -218,31 +152,6 @@ select {
     word-break: break-all;
 }
 
-
-/* =========================
-   ERROR
-   ========================= */
-
 .error {
     color: #f87171 !important;
-}
-
-
-/* =========================
-   FOOTER LOGO
-   ========================= */
-
-.footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.footer-logo img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    display: block;
 }
